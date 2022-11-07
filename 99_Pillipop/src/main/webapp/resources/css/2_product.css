@@ -1,0 +1,645 @@
+.page-loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all .4s .2s ease-in-out;
+    transition: all .4s .2s ease-in-out;
+    background-color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 9999;
+}
+
+.dark-mode .page-loading {
+    background-color: #121519;
+}
+
+.page-loading.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.page-loading-inner {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: opacity .2s ease-in-out;
+    transition: opacity .2s ease-in-out;
+    opacity: 0;
+}
+
+.page-loading.active>.page-loading-inner {
+    opacity: 1;
+}
+
+.page-loading-inner>span {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #6f788b;
+}
+
+.dark-mode .page-loading-inner>span {
+    color: #fff;
+    opacity: .6;
+}
+
+.page-spinner {
+    display: inline-block;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: .75rem;
+    vertical-align: text-bottom;
+    background-color: #d7dde2;
+    border-radius: 50%;
+    opacity: 0;
+    -webkit-animation: spinner .75s linear infinite;
+    animation: spinner .75s linear infinite;
+}
+
+.dark-mode .page-spinner {
+    background-color: rgba(255, 255, 255, .25);
+}
+
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes spinner {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+
+/* 여기부터 지연이꺼 */
+
+
+/* 필리팝 메인 컬러 */
+
+.color_ppp1 {
+    color: #86cbc0;
+}
+
+.color_ppp2 {
+    color: #1e4d56;
+}
+
+.color_ppp3 {
+    color: #efbe6f;
+}
+
+.color_ppp4 {
+    color: #979797;
+}
+
+
+/* 스토어 메인 컬러 */
+
+.color_store1 {
+    color: #d3b7d8;
+}
+
+.color_store2 {
+    color: #a13e97;
+}
+
+.color_store3 {
+    color: #632a7e;
+}
+
+.color_store4 {
+    color: #280e3b;
+}
+
+
+/* 모든페이지_경로 */
+
+.breadcrumb-item.active {
+    color: #86cbc0;
+}
+
+
+/* 상품_경로 */
+
+.breadcrumb-item2.active2 {
+    color: #a13e97;
+}
+
+
+/* 상품상세_찜 하트 색상 */
+
+.nav_link {
+    --ar-nav-link-padding-x: 1.75rem;
+    --ar-nav-link-padding-y: 0.725rem;
+    --ar-nav-link-font-weight: 500;
+    --ar-nav-link-color: var(--ar-gray-800);
+    --ar-nav-link-hover-color: #a13e97;
+    --ar-nav-link-disabled-color: var(--ar-gray-600);
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none
+}
+
+
+/* 장바구니담기 */
+
+.BgAndBorder {
+    background-color: #a13e97;
+    border-color: #a13e97;
+}
+
+.btn-primary_new {
+    --ar-btn-hover-color: #fff;
+    --ar-btn-active-color: #fff;
+    --ar-btn-hover-bg: #632a7e;
+    --ar-btn-active-bg: #37715d;
+    --ar-btn-hover-border-color: #632a7e;
+    --ar-btn-active-border-color: #37715d;
+    /* --ar-btn-disabled-color: #fff */
+}
+
+
+/*  상품상세_추가설명 */
+
+.color_d {
+    background-color: #dddddd;
+}
+
+
+/* 상품상세_추천상품2 좌우버튼 */
+
+.btn-outline-primary_new {
+    --ar-btn-color: #a13e97;
+    --ar-btn-border-color: #a13e97;
+    --ar-btn-hover-color: #fff;
+    --ar-btn-hover-bg: #a13e97;
+    --ar-btn-hover-border-color: #a13e97;
+    --ar-btn-focus-shadow-rgb: 68, 140, 116;
+    --ar-btn-active-color: #fff;
+    --ar-btn-active-bg: #632a7e;
+    --ar-btn-active-border-color: #632a7e;
+    --ar-btn-active-shadow: unset;
+    --ar-btn-disabled-color: #448c74;
+    --ar-btn-disabled-bg: transparent;
+    --ar-btn-disabled-border-color: #448c74;
+    --ar-gradient: none
+}
+
+
+/* 상품상세_설명아이콘 */
+
+.text-primary_new {
+    color: #a13e97;
+}
+
+
+/* 상품장바구니_본문 */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table_text_align_center {
+    text-align: center;
+}
+
+caption {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+
+.content_subject {
+    height: 110px;
+    line-height: 110px;
+    background-color: #5080bd;
+    margin-bottom: 60px;
+}
+
+.content_subject span {
+    padding-left: 30 px;
+    display: inline-block;
+    color: white;
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+.content_totalCount_section {
+    margin-bottom: 12px;
+}
+
+.content_btn_section {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.content_btn_section a {
+    color: #fefeff;
+    background-color: #365fdd;
+    min-width: 125px;
+    padding: 17px 25px;
+    display: inline-block;
+    height: 39px;
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 14px;
+    line-height: 39px;
+}
+
+.subject_table {
+    font-size: 14px;
+    line-height: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+th {
+    text-align: center;
+    color: #333;
+    border-bottom: 1px solid #e7e7e7;
+    background: #f4f9fd;
+    padding: 2px 0;
+}
+
+.td_width_1 {
+    width: 5%;
+}
+
+.td_width_2 {
+    width: 10%;
+}
+
+.td_width_3 {
+    width: 25%;
+}
+
+.td_width_4 {
+    width: 15%;
+}
+
+.cart_table {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.cart_table tr {
+    height: 110px;
+}
+
+.price_td {
+    padding-left: 5px;
+}
+
+.red_color {
+    color: red;
+}
+
+.green_color {
+    color: green;
+}
+
+.cart_table td {
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.quantity_div {
+    position: relative;
+    width: 42px;
+    height: 25px;
+    text-align: left;
+    margin: 5px auto;
+}
+
+.quantity_input {
+    position: absolute;
+    width: 27px;
+    height: 23px;
+    text-align: center;
+    border: 1px solid #c6c6c6;
+    border-right: 0px;
+    line-height: 19px;
+    font-size: 12px;
+    color: #4c4848;
+    left: 0;
+}
+
+.quantity_btn {
+    position: absolute;
+    border: 1px solid #aaa;
+    color: #3a60df;
+    width: 14px;
+    height: 13px;
+    padding: 0px;
+    background-color: #fff;
+    font-weight: bold;
+    font-size: 7px;
+    line-height: 6px;
+    vertical-align: middle;
+}
+
+.plus_btn {
+    top: 0;
+    right: 0
+}
+
+.minus_btn {
+    bottom: 0;
+    right: 0
+}
+
+.quantity_modify_btn {
+    border: 1px solid #d0d0d0;
+    height: 13px;
+    line-height: 13px;
+    background-color: #fff;
+    text-align: center;
+    width: 28px;
+    display: inline-block;
+    padding: 3px 6px 2px;
+    margin-top: 3px;
+}
+
+.table_text_align_center {
+    text-align: center;
+}
+
+.delete_btn {
+    width: 40px;
+}
+
+.content_total_section {
+    background-color: rgb(227, 237, 247);
+}
+
+.total_wrap {
+    width: 80%;
+    margin: auto;
+    padding: 10px 0 10px 0;
+}
+
+.total_wrap td {
+    width: 50%;
+}
+
+.finalTotalPrice_span {
+    color: #854A72;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.totalPoint_span {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.boundary_div {
+    font-size: 0;
+    border: 1px dotted #d1c7c7;
+    margin: 5px 0 5px 0;
+}
+
+
+/* 상품장바구니_텍스트 정렬 */
+
+.text_center {
+    text-align: center;
+}
+
+
+/* 상품장바구니_이미지  */
+
+.img_radius {
+    border-radius: 8px;
+}
+
+
+/* 상품장바구니_삭제버튼 */
+
+.bnt_border {
+    border: none;
+}
+
+
+/* 상품장바구니_버튼 */
+
+.btn-mp {
+    --ar-btn-hover-color: #fff;
+    --ar-btn-active-color: #fff;
+    --ar-btn-hover-bg: #efbe6f;
+    --ar-btn-active-bg: #1e4d56;
+    --ar-btn-hover-border-color: #efbe6f;
+    --ar-btn-active-border-color: #1e4d56;
+    /* --ar-btn-disabled-color: #fff */
+}
+
+.BgAndBorder_mp {
+    background-color: #86cbc0;
+    border-color: #86cbc0;
+}
+
+.bg-secondary_new {
+    --ar-bg-opacity: 1;
+    background-color: #F4EBF3!important
+}
+
+.bg-secondary_new2 {
+    --ar-bg-opacity: 1;
+    background-color: #ECF3F4!important
+}
+
+
+/* 상품장바구니_전체선택 */
+
+.content {
+    font-family: system-ui, serif;
+    font-size: 2rem;
+    padding: 3rem;
+    border-radius: 1rem;
+    background: #ff6e6c;
+    margin-top: 7px;
+}
+
+
+/* 상품장바구니_수량 */
+
+.div_pm {
+    display: flex;
+    /* display: inline-flex; */
+}
+
+.div_pmM {
+    width: 40%;
+    margin-right: 10px;
+    margin-left: 30px;
+}
+
+.bnt_pm {
+    border: 0;
+    margin-left: 5px;
+}
+
+
+/* 상품장바구니_결제버튼 */
+
+.bnt_mp_m {
+    display: flex;
+    float: right;
+    margin-top: 15px;
+}
+
+
+/* 회원가입_텍스트 왼쪽으로 정렬 */
+
+.txt_l {
+    text-align: left;
+    margin: 5px;
+}
+
+
+/* 회원가입_회원가입버튼 */
+
+.btn-primary_new2 {
+    --ar-btn-color: #000;
+    --ar-btn-bg: #86cbc0;
+    --ar-btn-border-color: #86cbc0;
+    --ar-btn-hover-color: #fff;
+    --ar-btn-hover-bg: #efbe6f;
+    --ar-btn-hover-border-color: #efbe6f;
+    --ar-btn-focus-shadow-rgb: 58, 119, 99;
+    --ar-btn-active-color: #fff;
+    --ar-btn-active-bg: #efbe6f;
+    --ar-btn-active-border-color: #efbe6f;
+    --ar-btn-active-shadow: unset;
+    --ar-btn-disabled-color: #000;
+    --ar-btn-disabled-bg: #448c74;
+    --ar-btn-disabled-border-color: #448c74
+}
+
+.a_new {
+    color: #86cbcd;
+}
+
+
+/* 회원가입_네이버,카카오버튼 */
+
+.btn-naver:hover,
+.btn-naver:focus,
+.btn-naver:active {
+    border-color: #2DB400 !important;
+    background-color: #2DB400 !important;
+    color: #fff !important
+}
+
+.btn-kakao:hover,
+.btn-kakao:focus,
+.btn-kakao:active {
+    border-color: #F7E600 !important;
+    background-color: #F7E600 !important;
+    color: #3A1D1D !important
+}
+
+
+/* 회원가입_동의체크버튼 */
+
+.form-check-input_new:checked {
+    background-color: #86cbc0;
+    border-color: #86cbc0;
+}
+
+
+/* 회원가입_중복검사 */
+
+
+/* 기본버튼 */
+
+.bnt_overlap {
+    width: 30%;
+    background-color: #86cbc0;
+    color: #fff;
+}
+
+
+/* 기본버튼 색*/
+
+.bnt_overlap:focus {
+    border-style: none;
+    background-color: #86cbc0;
+    color: #fff;
+}
+
+.bnt_overlap:active {
+    background-color: #efbef3;
+    box-shadow: 2px 2px 2px #979797;
+}
+
+
+/* 마우스 올려두면 색변화 */
+
+.bnt_overlap:hover {
+    background-color: #efbe6f;
+    color: #fff;
+}
+
+
+/* 로그인_제목이미지 */
+
+.login_img {
+    width: auto;
+    height: 50px;
+    margin-right: 10px;
+}
+
+
+/* 뉴스상세 */
+
+.py-5_new {
+    padding-top: 3rem !important;
+}
+
+
+/* 마이페이지_버튼 */
+
+.nav_new {
+    --ar-nav-link-padding-x: 1.75rem;
+    --ar-nav-link-padding-y: 0.725rem;
+    --ar-nav-link-font-weight: 500;
+    --ar-nav-link-color: var(--ar-gray-800);
+    --ar-nav-link-hover-color: #86cbc0;
+    --ar-nav-link-disabled-color: var(--ar-gray-600);
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none
+}

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.kh.pillipop.pharmacy.model.mapper.PharmacyMapper">
+  
+	<resultMap type="Pharmacy" id="pharmacyResultMap">
+		<id property="dutyNo" 					column="DUTYNO"/>
+		<result property="dutyUrl" 				column="DUTYURL"/>
+		<result property="dutyAddr" 			column="DUTYADDR"/>
+		<result property="dutyInf" 				column="DUTYINF"/>
+		<result property="dutyMapimg" 			column="DUTYMAPIMG"/>
+		<result property="dutyName" 			column="DUTYNAME"/>
+		<result property="dutyTel1" 			column="DUTYTEL1"/>
+		<result property="dutyTime1c" 			column="DUTYTIME1C"/>
+		<result property="dutyTime6c" 			column="DUTYTIME6C"/>
+		<result property="dutyTime7c" 			column="DUTYTIME7C"/>
+		<result property="dutyTime8c" 			column="DUTYTIME8C"/>
+		<result property="dutyTime1s" 			column="DUTYTIME1S"/>
+		<result property="dutyTime6s" 			column="DUTYTIME6S"/>
+		<result property="dutyTime7s" 			column="DUTYTIME7S"/>
+		<result property="dutyTime8s" 			column="DUTYTIME8S"/>
+		<result property="postCdn1" 			column="POSTCDN1"/>
+		<result property="postCdn2" 			column="POSTCDN2"/>
+		<result property="wgs84Lon" 			column="WGS84LON"/>
+		<result property="wgs84Lat" 			column="WGS84LAT"/>
+	</resultMap>
+	
+	<resultMap type="Pharmacy" id="pharmacyLikeResultMap" extends="pharmacyResultMap">
+		<collection property="u_no" resultMap="likeResultMap"/>
+	</resultMap>
+
+	<resultMap type="pLike" id="likeResultMap">
+		<result property="u_no" 	column="u_no"/>
+		<result property="dutyNo" 	column="dutyNo"/>
+	</resultMap>
+  
+	<!-- 약국 전체 목록 -->
+	<select id="selectPharmList" resultMap="pharmacyResultMap" parameterType="map">
+		SELECT * 
+		FROM PHARMACY 
+		WHERE 1 = 1
+		<if test="city != null">
+			AND DUTYADDR LIKE '%'||#{city}||'%'
+		</if>
+		<choose>
+		<when test= "county == '전체'">
+			AND DUTYADDR LIKE '%'||#{city}||'%'
+		</when>
+		<otherwise>
+			AND DUTYADDR LIKE '%'||#{county}||'%'
+		</otherwise>
+		</choose>
+		<if test="detailValue != null">
+			AND DUTYADDR LIKE '%'||#{detailValue}||'%'
+		</if>
+		<if test="pharmDetail != null">
+			AND DUTYNAME LIKE '%'||#{pharmDetail}||'%'
+		</if>
+			ORDER BY DUTYNO
+	</select>
+	
+	<!-- 약국 상세 정보 -->
+	<select id="selectPharmNo" parameterType="int" resultMap="pharmacyResultMap">
+	SELECT *
+	FROM PHARMACY
+	WHERE  dutyNo =#{dutyNo}
+	</select>
+	
+	<!-- 찜 목록(약) -->
+	<select id="selectLikePharmacy" resultMap="pharmacyResultMap" resultType="List">
+	    SELECT * 
+	    FROM PHARMACY
+			JOIN PLIKES USING(dutyNo)
+	</select>
+
+	<!-- 찜 목록 -->
+	<select id="selectPLike" resultMap="likeResultMap" resultType="List">
+	    SELECT * 
+	    FROM PHARMACY
+			JOIN PLIKES USING(dutyNo)
+	</select>
+	
+	<!-- 찜 등록 -->
+	<insert id="insertPLike" parameterType="pLike">
+	    INSERT INTO PLIKES(u_no, dutyNo)
+	    VALUES(#{u_no}, #{dutyNo})
+	</insert>
+
+	<!-- 찜 해제 -->
+	<delete id="deletePLike" parameterType="pLike">
+	    DELETE FROM PLIKES
+	    WHERE u_no=#{u_no} AND dutyNo=#{dutyNo}
+	</delete>
+  
+</mapper>

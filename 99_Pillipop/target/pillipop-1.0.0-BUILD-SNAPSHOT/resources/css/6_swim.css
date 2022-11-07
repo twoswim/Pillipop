@@ -1,0 +1,25 @@
+.form-check-input-new:checked {
+    background-color: #86cbcd;
+    border-color: #86cbcd;
+}
+
+.btn-outline-mint {
+  --ar-btn-color: #86cbcd;
+  --ar-btn-border-color: #86cbcd;
+  --ar-btn-hover-color: #000;
+  --ar-btn-hover-bg: #86cbcd;
+  --ar-btn-hover-border-color: #86cbcd;
+  --ar-btn-focus-shadow-rgb: 63, 202, 144;
+  --ar-btn-active-color: #000;
+  --ar-btn-active-bg: #86cbcd;
+  --ar-btn-active-border-color: #86cbcd;
+  --ar-btn-active-shadow: unset;
+  --ar-btn-disabled-color: #86cbcd;
+  --ar-btn-disabled-bg: transparent;
+  --ar-btn-disabled-border-color: #86cbcd;
+  --ar-gradient: none;
+}
+
+.breadcrumb-item-new.active {
+  color: #86cbcd;
+}

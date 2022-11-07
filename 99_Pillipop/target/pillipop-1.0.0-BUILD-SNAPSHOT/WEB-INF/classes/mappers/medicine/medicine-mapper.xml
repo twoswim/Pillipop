@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.pillipop.medicine.model.mapper.MedicineMapper">
+	
+	<resultMap type="Medicine" id="medicineResultMap">
+		<id property="itemSeq" 					column="itemSeq"/>
+		<result property="itemName" 			column="itemName"/>
+		<result property="entpName" 			column="entpName"/>
+		<result property="itemImage" 			column="itemImage"/>
+		<result property="efcyQesitm" 			column="efcyQesitm"/>
+		<result property="useMethodQesitm" 		column="useMethodQesitm"/>
+		<result property="depositMethodQesitm" 	column="depositMethodQesitm"/>
+		<result property="intrcQesitm" 			column="intrcQesitm"/>
+		<result property="atpnWarnQesitm" 		column="atpnWarnQesitm"/>
+		<result property="atpnQesitm" 			column="atpnQesitm"/>
+		<result property="seQesitm" 			column="seQesitm"/>
+		<result property="openDe" 				column="openDe"/>
+		<result property="updateDe" 			column="updateDe"/>
+	</resultMap>
+
+	<!-- 전체 목록 -->
+	<select id="selectAll" resultMap="medicineResultMap">
+		SELECT * 
+		FROM MEDICINE 
+		WHERE itemImage IS NOT NULL
+	</select>
+
+	<!-- 목록 개수 -->
+	<select id="selectCount" resultType="int" >
+		SELECT COUNT(*) 
+		FROM MEDICINE 
+		WHERE itemImage IS NOT NULL
+	</select>
+	
+	<!-- 상세 정보 -->
+	<select id="selectByNo" parameterType="string" resultMap="medicineResultMap">
+ 		SELECT * 
+ 		FROM MEDICINE
+		WHERE itemSeq = #{itemSeq}
+	</select>
+	
+</mapper>

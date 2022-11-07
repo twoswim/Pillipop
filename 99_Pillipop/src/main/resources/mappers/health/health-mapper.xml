@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.pillipop.store.model.mapper.HealthMapper">
+	
+	<resultMap type="Health" id="healthResultMap">
+		<id property="PRDLST_REPORT_NO" 		column="PRDLST_REPORT_NO"/>
+		<result property="BSSH_NM" 				column="BSSH_NM"/>
+		<result property="PRDLST_NM" 			column="PRDLST_NM"/>
+		<result property="PRMS_DT" 				column="PRMS_DT"/>
+		<result property="POG_DAYCNT" 			column="POG_DAYCNT"/>
+		<result property="NTK_MTHD" 			column="NTK_MTHD"/>
+		<result property="PRIMARY_FNCLTY" 		column="PRIMARY_FNCLTY"/>
+		<result property="IFTKN_ATNT_MATR_CN" 	column="IFTKN_ATNT_MATR_CN"/>
+		<result property="CSTDY_MTHD" 			column="CSTDY_MTHD"/>
+		<result property="RAWMTRL_NM" 			column="RAWMTRL_NM"/>
+		<result property="PRDT_SHAP_CD_NM" 		column="PRDT_SHAP_CD_NM"/>
+		<result property="ETC_RAWMTRL_NM" 		column="ETC_RAWMTRL_NM"/>
+		<result property="STDR_STND" 			column="STDR_STND"/>
+		<result property="hth_img" 				column="hth_img"/>
+		<result property="hth_price" 			column="hth_price"/>
+		<result property="hth_url" 				column="hth_url"/>
+		<result property="hth_category" 		column="hth_category"/>
+		<result property="hth_discount " 		column="hth_discount "/>
+	</resultMap>
+
+	<!-- 전체 목록 -->
+	<select id="selectAll" resultMap="healthResultMap">
+		SELECT PRDLST_REPORT_NO, BSSH_NM, (REGEXP_REPLACE(PRDLST_NM,'[+]',''))AS PRDLST_NM, PRMS_DT, POG_DAYCNT, NTK_MTHD, 
+				PRIMARY_FNCLTY,IFTKN_ATNT_MATR_CN, CSTDY_MTHD, RAWMTRL_NM,
+				PRDT_SHAP_CD_NM, ETC_RAWMTRL_NM, STDR_STND, hth_img, hth_price, hth_url,  hth_category, hth_discount
+		FROM HEALTH
+	</select>
+	
+	<!-- 상세 정보 -->
+	<select id="selectByNo" parameterType="long" resultMap="healthResultMap">
+		 SELECT PRDLST_REPORT_NO, BSSH_NM, (REGEXP_REPLACE(PRDLST_NM,'[+]',''))AS PRDLST_NM, PRMS_DT, POG_DAYCNT, NTK_MTHD, 
+				PRIMARY_FNCLTY,IFTKN_ATNT_MATR_CN, CSTDY_MTHD, RAWMTRL_NM,
+				PRDT_SHAP_CD_NM, ETC_RAWMTRL_NM, STDR_STND, hth_img, hth_price, hth_url, hth_category, hth_discount 
+		FROM HEALTH
+		WHERE PRDLST_REPORT_NO = #{PRDLST_REPORT_NO}
+	</select>
+	
+</mapper>

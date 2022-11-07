@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.pillipop.medicine.model.mapper.MedicineMapper">
+	
+	<resultMap type="Medicine" id="medicineResultMap">
+		<id property="itemSeq" 					column="itemSeq"/>
+		<result property="itemName" 			column="itemName"/>
+		<result property="entpName" 			column="entpName"/>
+		<result property="itemImage" 			column="itemImage"/>
+		<result property="efcyQesitm" 			column="efcyQesitm"/>
+		<result property="useMethodQesitm" 		column="useMethodQesitm"/>
+		<result property="depositMethodQesitm" 	column="depositMethodQesitm"/>
+		<result property="intrcQesitm" 			column="intrcQesitm"/>
+		<result property="atpnWarnQesitm" 		column="atpnWarnQesitm"/>
+		<result property="atpnQesitm" 			column="atpnQesitm"/>
+		<result property="seQesitm" 			column="seQesitm"/>
+		<result property="openDe" 				column="openDe"/>
+		<result property="updateDe" 			column="updateDe"/>
+	</resultMap>
+
+	<resultMap type="Medicine" id="medicineLikeResultMap" extends="medicineResultMap">
+		<collection property="u_no" resultMap="likeResultMap"/>
+	</resultMap>
+	
+	<resultMap type="MLike" id="likeResultMap">
+		<result property="u_no" 	column="u_no"/>
+		<result property="itemSeq" 	column="itemSeq"/>
+	</resultMap>
+
+	<!-- 전체 목록 -->
+	<select id="selectAll" resultMap="medicineResultMap">
+		SELECT * 
+		FROM MEDICINE 
+		WHERE itemImage IS NOT NULL
+	</select>
+
+	<!-- 목록 개수 -->
+	<select id="selectCount" resultType="int" >
+		SELECT COUNT(*) 
+		FROM MEDICINE 
+		WHERE itemImage IS NOT NULL
+	</select>
+	
+	<!-- 상세 정보 -->
+	<select id="selectByNo" parameterType="int" resultMap="medicineResultMap">
+		SELECT itemSeq, itemName, entpName, itemImage, efcyQesitm, useMethodQesitm, 
+				COALESCE(depositMethodQesitm, '정보가 없습니다.') AS depositMethodQesitm,
+				COALESCE(intrcQesitm, '정보가 없습니다.') AS intrcQesitm, 
+				COALESCE(atpnWarnQesitm, '정보가 없습니다.') AS atpnWarnQesitm, atpnQesitm, 
+				COALESCE(seQesitm, '정보가 없습니다.') AS seQesitm, openDe, updateDe
+		FROM MEDICINE
+		WHERE itemImage IS NOT NULL
+		AND itemSeq = #{itemSeq}
+	</select>
+	
+	<!-- 찜 목록(약) -->
+	<select id="selectLikeMedicine" resultMap="medicineResultMap" resultType="List">
+	    SELECT * 
+	    FROM MEDICINE
+			JOIN MLIKES USING(itemSeq)
+		WHERE itemImage IS NOT NULL
+	</select>
+
+	<!-- 찜 목록 -->
+	<select id="selectLike" resultMap="likeResultMap" resultType="List">
+	    SELECT * 
+	    FROM MEDICINE
+			JOIN MLIKES USING(itemSeq)
+		WHERE itemImage IS NOT NULL
+	</select>
+	
+	<!-- 찜 등록 -->
+	<insert id="insertLike" parameterType="MLike">
+	    INSERT INTO MLIKES
+	    VALUES(#{u_no}, #{itemSeq})
+	</insert>
+
+	<!-- 찜 해제 -->
+	<delete id="deleteLike" parameterType="MLike">
+	    DELETE FROM MLIKES
+	    WHERE u_no=#{u_no} AND itemSeq=#{itemSeq}
+	</delete>
+	
+	<!-- 메인페이지 약 검색 -->
+	<select id="auto" parameterType="map" resultType="map">
+		SELECT itemSeq, itemName
+		FROM MEDICINE
+		WHERE itemName LIKE '%'||#{value}||'%'
+			AND itemImage IS NOT NULL
+	</select>
+	
+</mapper>

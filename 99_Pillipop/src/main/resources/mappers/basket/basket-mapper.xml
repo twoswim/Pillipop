@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.pillipop.store.model.mapper.HealthMapper">
+	<resultMap type="Basket" id="BasketResultMap">
+		<id property="B_num" 					column="B_num"/>
+		<result property="u_no" 				column="u_no"/>
+		<result property="PRDLST_REPORT_NO" 	column="PRDLST_REPORT_NO"/>
+		<result property="B_ea" 				column="B_ea"/>
+		<result property="B_date" 				column="B_date"/>
+		<result property="B_update" 			column="B_update"/>
+		<result property="B_state" 				column="B_state"/>
+		<result property="BSSH_NM" 				column="BSSH_NM"/>
+		<result property="PRDLST_NM" 			column="PRDLST_NM"/>
+		<result property="hth_img" 				column="hth_img"/>
+		<result property="hth_price" 			column="hth_price"/>
+		<result property="hth_category" 		column="hth_category"/>
+		<result property="hth_discount" 		column="hth_discount"/>
+	</resultMap>
+
+	<resultMap type="Order" id="OrderResultMap">
+		<id property="or_no" 					column="or_no"/>
+		<result property="u_no" 				column="u_no"/>
+		<result property="recipient" 			column="recipient"/>
+		<result property="r_phone" 				column="r_phone"/>
+		<result property="addr_postal" 			column="addr_postal"/>
+		<result property="addr_road" 			column="addr_road"/>
+		<result property="addr_land" 			column="addr_land"/>
+		<result property="addr_detail" 			column="addr_detail"/>
+		<result property="addr_detail_add" 		column="addr_detail_add"/>
+		<result property="r_memo" 				column="r_memo"/>
+		<result property="or_date" 				column="or_date"/>
+		<result property="or_price" 			column="or_price"/>
+	</resultMap>	
+	
+	
+	<!-- 회원 join 상품 목록 -->
+	<select id="selectBasketList" resultMap="BasketResultMap" parameterType="map">
+		SELECT B.B_num, B.u_no, B.PRDLST_REPORT_NO, 
+				B.B_ea, B.B_date, B.B_state,
+				H.BSSH_NM, (REGEXP_REPLACE(H.PRDLST_NM,'[+]',''))AS PRDLST_NM,
+				H.hth_img, H.hth_price, H.hth_category, H.hth_discount
+		FROM BASKET B
+		JOIN HEALTH H ON(B.PRDLST_REPORT_NO = H.PRDLST_REPORT_NO)
+		WHERE B.B_state = 'Y'
+		AND B.u_no = #{u_no}
+	</select>
+
+	<!-- 장바구니 담기 -->
+	<insert id="insertBasket" parameterType="Basket"
+		useGeneratedKeys="true" keyColumn="B_num" keyProperty="B_num">
+		INSERT INTO Basket (
+		    B_num, u_no, PRDLST_REPORT_NO, 
+		    B_ea, B_date, B_state
+		) VALUES (
+		    SEQ_B_num.NEXTVAL, #{u_no}, #{PRDLST_REPORT_NO}, 
+		    #{B_ea}, DEFAULT, DEFAULT
+		)
+	</insert>
+	
+	<!-- 장바구니 갯수 -->
+	<select id="selectBasketCount" resultType="int">
+		SELECT COUNT(*)
+		FROM BASKET
+		WHERE B_state = 'Y' AND u_no = #{u_no}
+	</select>
+	
+	<!-- 장바구니에서 삭제 -->
+	<update id="deleteBasket" parameterType="int">
+		UPDATE BASKET SET B_state = 'N' WHERE B_num=#{B_num}
+	</update>
+	
+	<!-- 장바구니 주문(장바구니테이블 업데이트) -->
+	<update id="orderBasket" parameterType="Basket">
+		UPDATE BASKET SET
+		B_state = 'S',
+		B_update = SYSDATE
+		WHERE B_num = #{B_num}
+	</update>
+	
+	<!-- 주문(수령인정보) 저장 -->
+	<insert id="insertOrder" parameterType="Order"
+		useGeneratedKeys="true" keyColumn="or_no" keyProperty="or_no">
+		INSERT INTO ORDER_INFO (
+		    or_no , u_no, recipient, r_phone, 
+		    addr_postal, addr_road, addr_land, addr_detail,
+		    r_memo, addr_detail_add, or_date, or_price
+		) VALUES (
+		    SEQ_or_no.NEXTVAL, #{u_no}, #{recipient}, #{r_phone}, 
+		    #{addr_postal}, #{addr_road}, #{addr_land}, #{addr_detail},
+		    #{r_memo}, #{addr_detail_add}, DEFAULT, #{or_price}
+		)
+		
+	</insert>
+
+	<!-- 주문내역 - 상품 리스트 -->
+	<select id="selectOrders" resultMap="BasketResultMap" parameterType="map">
+		SELECT B.B_num, B.u_no, B.PRDLST_REPORT_NO, 
+				B.B_ea, B.B_date, B.B_state,
+				H.BSSH_NM, (REGEXP_REPLACE(H.PRDLST_NM,'[+]',''))AS PRDLST_NM,
+				H.hth_img, H.hth_price, H.hth_category, H.hth_discount
+		FROM BASKET B
+		JOIN HEALTH H ON(B.PRDLST_REPORT_NO = H.PRDLST_REPORT_NO)
+		WHERE B.B_state = 'S'
+		AND B.u_no = #{u_no}
+	</select>
+	
+	<!--주문내역 - 수령자정보 -->
+	<select id="selctOrderInfo" resultMap="OrderResultMap" parameterType="map">
+		SELECT or_no, u_no, recipient, r_phone, addr_postal, addr_road,
+				addr_land, addr_detail, r_memo, or_date, or_price
+		FROM ORDER_INFO
+		WHERE u_no = #{u_no}
+	</select>
+
+</mapper>

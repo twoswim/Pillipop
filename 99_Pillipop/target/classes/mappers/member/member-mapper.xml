@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Mapper 설정 파일임을 선언하는 부분 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.pillipop.member.model.mapper.MemberMapper">
+	<sql id="selectMemberSql">
+		SELECT
+				u_no,
+				u_id,
+				u_pw,
+				u_role,
+				u_img,
+				u_name,
+				u_nickname,
+				u_phone,
+				u_addr,
+				u_birth,
+				u_status
+		FROM MEMBER
+	</sql>
+	
+	<resultMap type="Member" id="memberResultMap">
+		<id property="u_no" column="u_no"/>
+		<result property="u_id" column="u_id"/>
+		<result property="u_pw" column="u_pw"/>
+		<result property="u_role" column="u_role"/>
+		<result property="u_img" column="u_img"/>
+		<result property="u_name" column="u_name"/>
+		<result property="u_nickname" column="u_nickname"/>
+		<result property="u_phone" column="u_phone"/>
+		<result property="u_addr" column="u_addr"/>
+		<result property="u_birth" column="u_birth"/>
+		<result property="u_status" column="u_status"/>
+	</resultMap>
+	
+	<select id="selectCount" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+	</select>
+	
+	<select id="selectAll" resultMap="memberResultMap">
+		<include refid="selectMemberSql"/>
+	</select>
+	
+	<!-- 
+ 		외부에서 매개변수로 받는 값이 있으면 해당하는 매개변수의 타입을 지정해줘야한다.(parameterType="string")
+ 		외부에서 매개변수로 받은 값은 #{변수명}로 설정해서 값을 가져온다.
+ 	 -->
+	<select id="selectMember" parameterType="string" resultMap="memberResultMap">
+		<include refid="selectMemberSql"/>
+		WHERE u_id = #{u_id} AND u_status = 'Y'
+	</select>
+	
+	<insert id="insertMember" parameterType="Member"
+		useGeneratedKeys="true" keyColumn="u_no" keyProperty="u_no">
+		INSERT INTO MEMBER (
+		    u_no, u_id, u_pw, 
+		    u_role, u_img, u_name,u_nickname,u_phone, 
+		    u_addr, u_birth, u_status 
+		) VALUES (
+		    SEQ_UNO.NEXTVAL, #{u_id}, #{u_pw}, 
+		    DEFAULT, #{u_img}, #{u_name}, #{u_nickname}, #{u_phone}, 
+		    #{u_addr}, #{u_birth}, DEFAULT
+		)
+	</insert>
+	
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER
+		SET U_NAME 	= #{u_name},
+			U_NICKNAME = #{u_nickname},
+			U_PHONE = #{u_phone},
+			U_ID = #{u_id},
+			U_IMG = #{u_img},
+			U_BIRTH = #{u_birth},
+			U_ADDR = #{u_addr}
+		WHERE U_NO = #{u_no}
+	</update>
+	
+	<update id="updatePwd" parameterType="map">
+		UPDATE MEMBER SET U_PW = #{u_pw} WHERE U_NO = #{u_no}
+	</update>
+	
+	<update id="deleteMember" parameterType="int">
+		UPDATE MEMBER
+			SET U_STATUS = 'N'
+		WHERE U_NO = #{u_no}
+	</update>
+
+</mapper>

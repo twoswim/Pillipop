@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.pillipop.news.model.mapper.NewsMapper">
+	
+	<resultMap type="news" id="newsResultMap">
+		<id property="st_seqNo" 			column="st_seqNo"/>
+		<result property="st_title" 		column="st_title"/>
+		<result property="st_subTitle" 		column="st_subTitle"/>
+		<result property="st_thumbNail" 	column="st_thumbNail"/>
+		<result property="st_view" 			column="st_view"/>
+		<result property="st_date" 			column="st_date"/>
+		<result property="st_cate" 			column="st_cate"/>
+		<result property="st_content1" 		column="st_content1"/>
+		<result property="st_content2" 		column="st_content2"/>
+		<result property="st_content3" 		column="st_content3"/>
+		<result property="st_content4" 		column="st_content4"/>
+		<result property="st_content5" 		column="st_content5"/>
+	</resultMap>
+
+	<!-- 전체 목록 -->
+<!-- 	<select id="selectAll" resultMap="newsResultMap"> -->
+<!-- 		SELECT * -->
+<!-- 		FROM NEWS -->
+<!-- 	</select> -->
+	
+	
+	<!-- 검색 목록 -->
+	<select id="selectNewsList" resultMap="newsResultMap" parameterType="map">
+		SELECT *
+		FROM NEWS
+		WHERE 1 = 1
+		<choose>
+		<when test= "searchType == 'nutrition'">
+			AND st_cate LIKE '%'||#{searchType}||'%'
+		</when>
+		<when test= "searchType == 'Life'">
+			AND st_cate LIKE '%'||#{searchType}||'%'
+		</when>
+		<otherwise>
+		</otherwise>
+		</choose>
+		<if test="searchValue != null">
+			AND st_title LIKE '%'||#{searchValue}||'%'
+		</if>
+			ORDER BY st_seqNo
+	</select>
+
+	<!-- 목록 개수 -->
+	<select id="selectCount" resultType="int" >
+		SELECT COUNT(*) 
+		FROM NEWS
+	</select>
+	
+	<!-- 상세 정보 -->
+	<select id="selectByNo" parameterType="int" resultMap="newsResultMap">
+		SELECT 
+		st_seqNo, st_title,st_subTitle,st_thumbNail , st_view, st_date, st_cate, 
+		st_content1, st_content2, st_content3, st_content4, st_content5  
+		FROM NEWS
+		WHERE st_seqNo = #{st_seqNo}
+		<!-- WHERE st_seqNo = #{st_seqNo} st_seqNo의 값을 받아 글 정보 뽑아오기 -->
+	</select>
+	
+	<select id="">
+	
+	</select>
+	
+</mapper>

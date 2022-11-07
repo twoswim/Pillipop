@@ -1,0 +1,148 @@
+.btn-outline-primary {
+    --ar-btn-color: #89CBBD;
+    --ar-btn-border-color: #89CBBD;
+    --ar-btn-hover-color: rgb(255, 255, 255);
+    --ar-btn-hover-bg: #89CBBD;
+    --ar-btn-hover-border-color: #89CBBD;
+    --ar-btn-focus-shadow-rgb: 68, 140, 116;
+    --ar-btn-active-color: rgb(255, 255, 255);
+    --ar-btn-active-bg: #89CBBD;
+    --ar-btn-active-border-color: #89CBBD;
+    --ar-btn-active-shadow: unset;
+    --ar-btn-disabled-color: #89CBBD;
+    --ar-btn-disabled-bg: transparent;
+    --ar-btn-disabled-border-color: #89CBBD;
+    --ar-gradient: none
+}
+
+.bg_pink {
+    /* background-color: #F9F3ED; */
+}
+
+.right {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.left {
+    display: inline-block;
+    vertical-align: top;
+    width: 35%;
+}
+
+.common-bluegreen {
+    border-radius: 1.5rem;
+    border: 0cm;
+    background-color: #89CBBD;
+    color: white;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 0.575rem;
+    padding-bottom: 0.575rem;
+    font-size: 14px;
+}
+
+.common-black {
+    border-radius: 1.5rem;
+    border: 0cm;
+    background-color: #000000;
+    color: white;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 0.575rem;
+    padding-bottom: 0.575rem;
+    font-size: 14px;
+}
+
+.news-yellow {
+    border-radius: 2rem;
+    border: 0cm;
+    background-color: #EFBE6F;
+    color: white;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 14px;
+    font-family: 'NanumSquareB';
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+.news-li {
+    width: 220px;
+    height: 400px;
+    display: inline-block;
+    margin: 0px 10px;
+    align-items: baseline;
+}
+
+.news-li>p {
+    padding-bottom: 0px;
+}
+
+.background-image {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: block;
+    background-image: url("assets/img/3_MainPage/bgimg26.jpg");
+    width: 1200px;
+    height: 800px;
+}
+
+.content {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.news-button {
+    border-radius: 3rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #EFBE6F;
+    border: none;
+}
+
+.info>p {
+    display: inline-block;
+    font-family: 'NanumSquareB';
+    font-size: 18px;
+}
+
+.p-bluegreen {
+    color: #89CBBD;
+}
+
+#beginners>p {
+    font-family: 'NanumSquareB';
+}
+
+/* 플러팅 버튼 */
+.floatdiv {
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    right: 0;
+    left: 94%;
+    /* 창에서 오른쪽 길이 */
+    top: 82%;
+    /* 창에서 위에서 부터의 높이 */
+    margin: 0;
+    border-radius: 90px;
+    z-index: 99;
+}
+/* 
+.floatimg {
+    width: auto;
+    height: 130px;
+} */

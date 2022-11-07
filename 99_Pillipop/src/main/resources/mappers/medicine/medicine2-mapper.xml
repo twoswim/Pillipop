@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.pillipop.medicine.model.mapper.MedicineMapper2">
+	
+	<resultMap type="Medicine2" id="medicineResultMap">
+		<id property="ITEM_SEQ" 		column="ITEM_SEQ"/>
+		<result property="ITEM_NAME" 	column="ITEM_NAME"/>
+		<result property="ENTP_NAME" 	column="ENTP_NAME"/>
+		<result property="ITEM_IMAGE" 	column="ITEM_IMAGE"/>
+		<result property="DRUG_SHAPE" 	column="DRUG_SHAPE"/>
+		<result property="ITEM_PRINT" 	column="ITEM_PRINT"/>
+		<result property="ITEM_COLOR" 	column="ITEM_COLOR"/>
+		<result property="ITEM_LINE" 	column="ITEM_LINE"/>
+		<result property="MARK_IMG" 	column="MARK_IMG"/>
+	</resultMap>
+	
+	<!-- 전체 목록 -->
+	<select id="selectAll" resultMap="medicineResultMap">
+		SELECT ITEM_SEQ, ITEM_NAME, ENTP_NAME, ITEM_IMAGE, DRUG_SHAPE, ITEM_PRINT, ITEM_COLOR, 
+				COALESCE(ITEM_LINE,'없음') AS ITEM_LINE, COALESCE(MARK_IMG, '없음') AS MARK_IMG
+		FROM MEDICINE2 
+		WHERE ITEM_IMAGE IS NOT NULL
+	</select>
+
+	<!-- 목록 개수 -->
+	<select id="selectCount" resultType="int" >
+		SELECT COUNT(*)
+		FROM MEDICINE2
+		WHERE ITEM_IMAGE IS NOT NULL
+	</select>
+	
+	<!-- 상세 정보 -->
+	<select id="selectByNo" parameterType="int" resultMap="medicineResultMap">
+		SELECT ITEM_SEQ, ITEM_NAME, ENTP_NAME, ITEM_IMAGE, DRUG_SHAPE, 
+		COALESCE(ITEM_PRINT, '없음') AS ITEM_PRINT,  ITEM_COLOR, 
+		COALESCE(ITEM_LINE,'없음') AS ITEM_LINE, MARK_IMG
+		FROM MEDICINE2 
+		WHERE ITEM_IMAGE IS NOT NULL AND ITEM_SEQ = #{ITEM_SEQ}
+	</select>
+	
+</mapper>

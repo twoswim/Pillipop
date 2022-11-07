@@ -1,0 +1,285 @@
+:root {
+    /* color */
+    --grey-color: #979797;
+    --link-color: #979797;
+    --link-hover-color: #979797;
+}
+
+
+/* button:hover {
+    color: white;
+    background-color: #1e4d56;
+} */
+
+.breadcrumb .breadcrumb-item a {
+    color: #979797;
+}
+
+.breadcrumb li {
+    color: #979797;
+}
+
+.breadcrumb .presentPage {
+    color: #86cbc0;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.fs-sm {
+    padding-right: 15px;
+}
+
+.mainPic {
+    height: 350px;
+}
+
+.sideLink-pp {
+    color: #000000 !important;
+}
+
+.btn-primary {
+    background-color: #000000 !important;
+}
+
+.mt-lg-n2 {
+    font-family: "NanumSquareEB";
+}
+
+.pb-1 {
+    font-family: "NanumSquareEB";
+}
+
+.read-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.SubTitle {
+    margin-top: 30px;
+    height: 65px;
+    position: relative;
+    border-bottom: 1px solid var(--ar-border-color);
+}
+
+.read-title {
+    margin-top: 10px;
+}
+
+.WriterInfo .profile {
+    position: relative;
+    vertical-align: center;
+    float: left;
+    margin-right: 20px;
+}
+
+.WriterInfo .read-info {
+    float: left;
+}
+
+.profile-info {
+    display: block;
+    margin-bottom: -5px;
+}
+
+.WriterInfo .profile-info .nickname {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.write-info {
+    display: block;
+    font-size: 15px;
+    line-height: 10px;
+    color: #979797;
+}
+
+.write-info .date {
+    margin-right: 10px;
+}
+
+.write-info .read-count {
+    margin-right: 10px;
+}
+
+.ReadTitle {
+    margin-bottom: 30px;
+}
+
+.ReadTool {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.ReadTool button {
+    padding-left: 1.0em;
+    padding-right: 1.0em;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    margin-right: 0.15em;
+    margin-left: 0.15em;
+    border-radius: var(--ar-border-radius);
+    text-decoration: none;
+    background: #86cbc0;
+    border: 1px #86cbc0;
+    color: white;
+}
+
+.ReadTool button:hover {
+    color: white;
+    background-color: #1e4d56;
+}
+
+.comment {
+    border-top: 1px solid var(--ar-border-color);
+    margin-top: 30px;
+}
+
+.commentFixBr {
+    display: inline-block;
+    margin: 0 0 0 auto;
+}
+
+.commentFixBr :hover {
+    color: #000000;
+}
+
+.commentFixBtn {
+    text-decoration: none;
+    color: #979797;
+}
+
+.commentFixBr button {
+    border: 0;
+    outline: 0;
+    background-color: white;
+}
+
+.commentDelBtn {
+    text-decoration: none;
+    color: #979797;
+}
+
+.comment-write {
+    width: 100%;
+    height: 160px;
+    margin-top: 20px;
+    padding: 10px 10px 10px 10px;
+    border: 1px solid var(--ar-border-color);
+    border-radius: var(--ar-border-radius);
+    box-sizing: border-box;
+    background: white;
+}
+
+.comment-input {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.comment-input-text {
+    display: block;
+    width: 100%;
+    min-height: 15px;
+    padding-right: 1px;
+    border: 0px solid var(--ar-border-color);
+    font-size: 13px;
+    resize: none;
+    box-sizing: border-box;
+    background: transparent;
+}
+
+.comment-enter-box {
+    float: right;
+    right: 0;
+    bottom: 20px;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.comment-enter-box button {
+    padding-left: 1.0em;
+    padding-right: 1.0em;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    border-radius: var(--ar-border-radius);
+    text-decoration: none;
+    background: #86cbc0;
+    border: 1px #86cbc0;
+    color: white;
+}
+
+.comment-enter-box button:hover {
+    color: white;
+    background-color: #1e4d56;
+}
+
+#comments {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.prevNext {
+    margin-top: 30px;
+    border-top: 1px solid var(--ar-border-color);
+    font-family: "NanumSquareL";
+}
+
+.prev {
+    color: #000000;
+}
+
+.next {
+    color: #000000;
+}
+
+.prevNext dt {
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid var(--ar-border-color);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.prevNext dt a {
+    width: 600px;
+    margin-left: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #000000;
+    text-decoration: none;
+}
+
+dd {
+    display: block;
+    margin-inline-start: 40px;
+    margin-bottom: 0 !important;
+}
+
+.btn-link {
+    color: #1e4d56 !important;
+}
+
+.file-down {
+    float: right;
+    margin-top: 10px;
+}
+
+.file-down a {
+    font-size: 16px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #979797;
+    text-decoration: none;
+}
+
+.file-down a :hover {
+    color: #000000;
+}

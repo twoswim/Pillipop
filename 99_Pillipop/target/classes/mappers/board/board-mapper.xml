@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.kh.pillipop.board.model.mapper.BoardMapper">
+	<resultMap type="Board" id="boardListResultMap">
+		<id property="boNo" column="BNUM"/>
+		<result property="u_no" column="u_no"/>
+		<result property="u_nickname" column="u_nickname"/>
+		<result property="title" column="Title"/>
+		<result property="boContent" column="Content"/>
+		<result property="cid" column="CID"/>
+		<result property="attachment" column="Attachment"/>
+		<result property="modifiedAttachment" column="Modified_Attachment"/>
+		<result property="readAccount" column="READACCOUNT"/>
+		<result property="status" column="STATUS"/>
+		<result property="boDate" column="BDATE"/>
+		<result property="modifiedboDate" column="Modified_BDATE"/>
+	</resultMap>
+	
+	<resultMap type="Board" id="boardDetailResultMap" extends="boardListResultMap">
+		<collection property="replies" javaType="arrayList" columnPrefix="R_" resultMap="boardReplyResultMap"/>
+	</resultMap>
+	
+	<resultMap type="Reply" id="boardReplyResultMap">
+		<id property="reNo" column="CNum"/>
+		<result property="boNo" column="BNUM"/>
+		<result property="u_no" column="u_no"/>
+		<result property="u_id" column="u_id"/>
+		<result property="u_nickname" column="u_nickname"/>
+		<result property="reContent" column="content"/>
+		<result property="status" column="STATUS"/>
+		<result property="reDate" column="CDATE"/>
+		<result property="modifiedreDate" column="Modified_CDATE"/>
+	</resultMap>
+
+	<select id="selectBoardList" resultMap="boardListResultMap" parameterType="map">
+		SELECT  B.BNUM,
+				B.Title,
+				M.u_nickname,
+				B.Content,
+				B.CID, 
+				B.Attachment,
+				B.Modified_Attachment,
+				B.READACCOUNT,
+				B.BDATE,
+				B.Modified_BDATE
+		FROM BOARD B
+		JOIN MEMBER M ON(B.u_no = M.u_no)
+		WHERE B.STATUS = 'Y'
+		<!-- WHERE 1=1 -->
+		<if test="writerKeyword != null">
+			AND M.u_nickname LIKE '%'||#{writerKeyword}||'%'
+		</if>
+		<if test="titleKeyword != null">
+			AND B.Title LIKE '%'||#{titleKeyword}||'%'
+		</if>
+		<if test="contentKeyword != null">
+			AND B.Content LIKE '%'||#{contentKeyword}||'%'
+		</if>
+		<if test="categoryKeyword != null">
+			AND B.CID LIKE '%'||#{categoryKeyword}||'%'
+		</if>
+		ORDER BY B.BNUM DESC
+	</select> 
+	
+	<select id="selectBoardCount" resultType="int"  parameterType="map">
+		SELECT  COUNT(*)
+		FROM BOARD B
+		JOIN MEMBER M ON(B.u_no = M.u_no)
+		WHERE B.STATUS = 'Y'
+		<!-- WHERE 1=1 -->
+		<if test="writerKeyword != null"> 
+			AND M.u_nickname LIKE '%'||#{writerKeyword}||'%'
+		</if>
+		<if test="titleKeyword != null">
+			AND B.Title LIKE '%'||#{titleKeyword}||'%'
+		</if>
+		<if test="contentKeyword != null">
+			AND B.Content LIKE '%'||#{contentKeyword}||'%'
+		</if>
+		<if test="categoryKeyword != null">
+			AND B.CID LIKE '%'||#{categoryKeyword}||'%'
+		</if>
+		ORDER BY B.BNUM DESC
+	</select>
+	
+	<select id="selectBoardByNo" parameterType="int" resultMap="boardDetailResultMap">
+		SELECT 	B.BNUM,
+				B.Title,
+				B.u_no, 
+				M.u_nickname,
+				B.READACCOUNT,
+				B.Attachment,
+				B.Modified_Attachment,
+				B.Content,
+				B.CID, 
+				B.BDATE,
+				B.Modified_BDATE,
+		       	R.CNum AS R_CNum, 
+		       	R.BNUM AS R_BNUM, 
+		      	R.content AS R_content, 
+		      	R.u_nickname AS R_u_nickname,
+		      	M2.u_id AS R_u_id, 
+		      	R.CDATE AS R_CDATE, 
+		      	R.Modified_CDATE AS R_Modified_CDATE
+		FROM BOARD B
+		JOIN MEMBER M ON(B.u_no = M.u_no)
+		LEFT OUTER JOIN REPLY R ON(B.BNUM = R.BNUM)
+		LEFT OUTER JOIN MEMBER M2 ON(R.u_no = M2.u_no)
+		WHERE B.STATUS='Y' AND B.BNUM=#{boNo}
+	</select>
+	
+	<insert id="insertBoard" parameterType="Board"
+			useGeneratedKeys="true" keyProperty="boNo" keyColumn="BNUM">
+		INSERT INTO BOARD (
+			BNUM,
+			u_no,
+			u_nickname,
+			Title,
+			Content,
+			Attachment,
+			Modified_Attachment,
+			CID,
+			READACCOUNT,
+			STATUS,
+			BDATE,
+			Modified_BDATE		
+		) VALUES (
+			SEQ_BNUM.NEXTVAL,
+			#{u_no},
+			#{u_nickname},
+			#{title},
+			#{boContent},
+			#{attachment},
+			#{modifiedAttachment},
+			#{cid},
+			DEFAULT,
+			DEFAULT,
+			DEFAULT,
+			DEFAULT
+		)
+	</insert>
+	
+	<insert id="insertReply" parameterType="Reply">
+		INSERT INTO REPLY 
+			VALUES(SEQ_REPLY_CNum.NEXTVAL, 
+			#{boNo}, #{u_no}, #{u_id}, #{u_nickname}, #{reContent}, DEFAULT, DEFAULT, DEFAULT)
+	</insert>
+	
+	<update id="updateBoard" parameterType="Board">
+		UPDATE BOARD
+		SET
+			TITLE=#{title},
+			CONTENT=#{boContent},
+			CID=#{cid},
+			<if test="attachment != null">
+				Attachment=#{attachment},
+			</if>
+			<if test="modifiedAttachment != null">
+				Modified_Attachment=#{modifiedAttachment},
+			</if>
+			Modified_BDATE=SYSDATE
+		WHERE
+			BNUM=#{boNo}
+	</update>
+	
+	<update id="updateReadAccount" parameterType="map">
+		UPDATE BOARD SET READACCOUNT=#{readAccount} WHERE BNUM=#{boNo}
+	</update>
+	
+	<update id="deleteBoard" parameterType="int">
+		UPDATE BOARD SET STATUS='N' WHERE BNUM=#{boNo}
+	</update>
+	
+	<delete id="deleteReply" parameterType="int">
+		DELETE REPLY WHERE CNum=#{reNo}
+	</delete>
+	
+	<!-- 내 활동 > 내 게시글 -->
+	<select id="selectMyBoardByNo" parameterType="int" resultMap="boardListResultMap">
+		SELECT 	B.BNUM,
+		        B.Title,
+		        B.u_no, 
+		        M.u_nickname,
+		        M.u_no,
+		        B.READAccount,
+		        B.CID, 
+		        B.BDATE,
+		        B.Modified_BDATE,
+		        B.STATUS
+		FROM BOARD B
+		JOIN MEMBER M ON(B.u_no = M.u_no)
+		WHERE B.status='Y' AND B.u_no=#{u_no}
+	</select>
+	
+	<!-- 내 활동 > 내 댓글 -->
+	<select id="selectMyReplyByNo" parameterType="int" resultMap="boardReplyResultMap">
+		SELECT 	B.BNUM,
+		        B.u_no,
+		        R.CNum,
+		        R.BNum,
+		        R.content,
+		        R.u_nickname,
+		        R.CDate,
+		        R.Modified_CDATE
+		FROM REPLY R
+		JOIN BOARD B ON(B.u_no = R.u_no)
+		WHERE R.status='Y' AND R.u_no=#{u_no}
+	</select>
+	
+</mapper>

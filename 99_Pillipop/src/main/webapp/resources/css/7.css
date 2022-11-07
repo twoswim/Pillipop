@@ -1,0 +1,525 @@
+.ks_wrap_main {
+    overflow: hidden;
+    /* background: #F6F9FC url("../img/7_drug/ks-map.gif") no-repeat 50% 0; */
+}
+
+.ks_wrap_main .box {
+    position: relative;
+    margin: 0 auto;
+    width: 960px;
+    height: 675px;
+}
+
+.ks_text-color {
+    --bs-text-opacity: 1;
+    color: #86cbc0;
+    color: #1e4d56;
+    color: #EFBE6F;
+    color: #000000;
+    color: #979797;
+}
+
+.ks_black {
+    color: #000000;
+}
+
+.ks_font-ser {
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.ks_main_img {
+    /* object-fit: cover; */
+    overflow: hidden;
+    background: url("../img/7_drug/baner_4_ver2.png") no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+
+/* 30 18 35 */
+
+.ks_wrap_main ul .nth1 {
+    background: url("../img/7_drug/main_info1.png") no-repeat 50% 18%;
+}
+
+.ks_wrap_main ul .nth2 {
+    background: url("../img/7_drug/main_info2.png") no-repeat 50% 35%;
+}
+
+.ks_wrap_main ul {
+    width: 958px;
+    height: 430px;
+    background-color: #ffffffb3;
+    border: 1px solid #e5e5e5;
+}
+
+.ks_wrap_homeSear {
+    height: 420px;
+    background: #ffc1c1;
+}
+
+.ks_wrap_main ul li {
+    padding-top: 250px;
+    float: left;
+    width: 50%;
+}
+
+.ks_wrap_main ul li h2 {
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ks_wrap_main ul li p {
+    margin: 0 auto;
+    width: 60%;
+    text-align: center;
+    font-size: 13px;
+}
+
+.ks_wrap_main header h1 {
+    padding: 10px 0 20px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.ks_wrap_main header p {
+    text-align: center;
+}
+
+.ks_wrap_main header {
+    overflow: hidden;
+    padding: 70px 0 20px 0;
+    display: block;
+}
+
+.ks_ser_button {
+    background-color: #86cbc0;
+    border-radius: 42px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 19px 23px;
+    text-decoration: none;
+    border: 0px;
+}
+
+.ks_ser_button:hover {
+    background-color: #1e4d56;
+}
+
+.ks_ser_button2 {
+    background-color: #86cbc0;
+    border-radius: 42px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 22px 22px;
+    text-decoration: none;
+    border: 0px;
+}
+
+.ks_ser_button2:hover {
+    background-color: #1e4d56;
+}
+
+.wrap_subBody {
+    margin: 0 auto;
+    width: 1000px;
+    margin-top: -40px;
+}
+
+.ks_number {
+    margin-top: -15px;
+    margin-bottom: 2px;
+    width: 150px;
+    float: right;
+    padding: 8px 20px;
+    background: url(../img/7_drug/ks-sprite.png) no-repeat 0 -617px;
+    /* 약국 아이콘 */
+}
+
+.wrap_subBody .wrap_pharm {
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+.wrap_subBody .wrap_pharm .box_h3 {
+    position: relative;
+    padding: 20px 0;
+    border-bottom: 1px solid #e7e6e1;
+    overflow: hidden;
+}
+
+.blind {
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    top: -1000em;
+    left: 0;
+}
+
+.wrap_subBody .wrap_pharm .result_txt {
+    text-align: start;
+    margin-bottom: -7px;
+    margin-top: -7px;
+}
+
+.wrap_subBody .wrap_pharm .box_ul {
+    position: relative;
+}
+
+.ks_underline {
+    text-decoration: none;
+}
+
+.wrap_subBody .wrap_pharm .box_ul .o_icon {
+    font-size: 13px;
+    text-align: right;
+    padding: 15px 0;
+}
+
+.wrap_subBody .wrap_pharm .box_ul .tx {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    color: #979797;
+    font-size: 13px;
+}
+
+.wrap_subBody .wrap_pharm ul {
+    border-top: 1px solid #979797;
+    margin-top: -17px;
+}
+
+.wrap_subBody .wrap_pharm li.icon {
+    background: url(../img/7_drug/map_icon1.png) no-repeat 0px 50%;
+    background-size: 37px 61px;
+    margin-top: -20px;
+    margin-bottom: -30px;
+    margin-left: -20px;
+    color: black;
+}
+
+.wrap_subBody .wrap_pharm li {
+    border-bottom: 1px solid #e7e6e1;
+    padding: 10px 10px 10px 60px;
+    max-height: 150px;
+    overflow: hidden;
+}
+
+
+/* 약국 리스트 */
+
+.wrap_subBody .wrap_pharm li .l1 {
+    float: inherit;
+    clear: both;
+    font-weight: bold;
+    color: #343434;
+    font-size: 20px;
+    margin-top: 12px;
+}
+
+.wrap_subBody .wrap_pharm li .l2 {
+    float: left;
+    width: 40%;
+}
+
+.wrap_subBody .wrap_pharm li .l3 {
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+
+.wrap_subBody .wrap_pharm li .l4 {
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+
+.wrap_subBody .wrap_pharm li .l5 {
+    float: left;
+    width: 10%;
+}
+
+.wrap_subBody .wrap_pharm li .i_tel {
+    display: block;
+    margin: 0 auto;
+    background: url(../img/7_drug/ks-sprite.png) no-repeat 10px -888px;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999px;
+}
+
+.wrap_subBody .wrap_pharm li .i_open {
+    display: block;
+    margin: 0 auto;
+    background: url(../img/7_drug/ks-sprite.png) no-repeat 10px -949px;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999px;
+}
+
+.wrap_subBody .wrap_pharm li .i_close {
+    display: block;
+    margin: 0 auto;
+    background: url(../img/7_drug/ks-sprite.png) no-repeat 10px -1015px;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999px;
+}
+
+.wrap_subBody .wrap_pharm .box_ul .o_icon .t1 {
+    background: url(../img/7_drug/ks-sprite.png) no-repeat 0 -887px;
+    padding-left: 15px;
+    margin-right: 20px;
+}
+
+.wrap_subBody .wrap_pharm .box_ul .o_icon .t2 {
+    background: url(../img/7_drug/ks-sprite.png) no-repeat 0 -951px;
+    padding-left: 15px;
+    margin-right: 20px;
+}
+
+.wrap_subBody .wrap_pharm .box_ul .o_icon .t3 {
+    background: url(../img/7_drug/ks-sprite.png) no-repeat 0 -1015px;
+    padding-left: 15px;
+}
+
+.det_body {
+    /* position: relative; */
+    margin: 0 auto;
+    margin-bottom: 40px;
+    width: 1000px;
+    margin-top: -100px;
+}
+
+.common-hgroup2 {
+    clear: both;
+    position: relative;
+    margin: 0 0 46px;
+    padding-top: 56px;
+}
+
+.ks_margin {
+    margin-bottom: 50px;
+}
+
+.common-hgroup3 {
+    clear: both;
+    position: relative;
+    margin: 22px 0 36px;
+    float: left;
+    margin-bottom: -5px;
+}
+
+.common-hgroup5 {
+    clear: both;
+    position: relative;
+    margin: 26px 0 16px;
+}
+
+.common-time {
+    padding: 10px 0;
+    border-top: 2px solid #747474;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.common-time ul li {
+    float: left;
+    width: 25%;
+    line-height: 2em;
+}
+
+.common-hgroup30 {
+    float: left;
+}
+
+.common-hgroup31 {
+    clear: both;
+    position: relative;
+    float: right;
+    margin-top: -45px;
+    margin-right: 30px;
+}
+
+.common-caution {
+    clear: both;
+    position: relative;
+    margin-top: 20px;
+    padding: 12px 30px;
+    border: 0px solid #1e4d56;
+    background: #86cbc0;
+    color: #1e4d56;
+    line-height: 1.6em;
+    border-radius: 20px;
+}
+
+.common-caution2 {
+    clear: both;
+    position: relative;
+    margin-top: 20px;
+    padding: 12px 30px;
+    border: 0px solid #1e4d56;
+    background: lightgray;
+    color: rgb(75, 75, 75);
+    line-height: 1.6em;
+    border-radius: 20px;
+}
+
+.common-command {
+    clear: both;
+    margin-top: 40px;
+    text-align: right;
+    overflow: hidden;
+}
+
+
+/* 상세 목록버튼 */
+
+.common-command .common-btn.btn-size-l {
+    min-width: 100px;
+}
+
+.common-btn.btn-size-l {
+    font-size: 14px;
+    padding: 11px 18px;
+}
+
+.common-btn {
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #c7c7c7;
+    background: #f5f5f5;
+    font-size: 13px;
+    padding: 7px 16px 8px;
+    font-weight: 400;
+    line-height: 1.2em;
+    color: #555;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 42px;
+}
+
+.common-btn.btn-color-normal {
+    border: 1px solid #505050;
+    background: #505050;
+    color: #ffffff;
+}
+
+.common-row {
+    clear: both;
+    margin-top: 0;
+}
+
+.det_icon_tel {
+    display: block;
+    margin: 0 auto;
+    background: url(../img/7_drug/ks-sprite.png) no-repeat 10px -886px;
+    width: 130px;
+    height: 20px;
+    text-align: center;
+}
+
+.det_icon_open {
+    display: block;
+    margin: 0 auto;
+    background: url(../img/7_drug/ks-sprite.png) no-repeat 10px -949px;
+    width: 130px;
+    height: 20px;
+    text-align: center;
+}
+
+.det_icon_close {
+    display: block;
+    margin: 0 auto;
+    background: url(../img/7_drug/ks-sprite.png) no-repeat 10px -1014px;
+    width: 130px;
+    height: 20px;
+    text-align: center;
+}
+
+.det_icon10 {
+    font-size: 13px;
+    /* text-align: right; */
+    padding: 10px 0;
+    clear: both;
+    position: relative;
+    margin-top: 22px;
+    margin-left: 46px;
+}
+
+.column-size5 {
+    width: 400px;
+    float: left;
+}
+
+.column-size7 {
+    width: 580px;
+    float: left;
+    margin-left: 16px;
+}
+
+.common-board {
+    clear: both;
+    width: 100%;
+}
+
+.place-view-body {
+    position: relative;
+    overflow: hidden;
+    height: 280px;
+    border: 1px solid #979797;
+}
+
+.common-row2 {
+    clear: both;
+    margin-top: 0;
+    display: block;
+    height: 282px;
+    width: 1000px;
+}
+
+.common-name1 {
+    margin-top: -15px;
+}
+
+.common-board tbody tr:first-child {
+    width: 100%;
+    border-top: 2px solid #747474;
+}
+
+.common-board tbody th {
+    padding: 12px 4px 10px 16px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #dfdfdf;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: left;
+    line-height: 1.4em;
+}
+
+.common-board tbody td {
+    padding: 18px 6px 0px 16px;
+    font-size: 14px;
+    text-align: left;
+    line-height: 1.4em;
+    background: white;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.ks-secondary {
+    --ar-bg-opacity: 1;
+    background-color: var(white) !important;
+}
+
+.breadcrumb-item.active {
+    color: #86cbc0;
+}
